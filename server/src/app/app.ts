@@ -13,6 +13,9 @@ app.set("DB_USERNAME", process.env.DB_USERNAME);
 app.set("DB_PASSWORD", process.env.DB_PASSWORD);
 app.set("DB_NAME", process.env.DB_NAME);
 
+// Middlewares
+app.use(express.json());
+
 // Router
 app.use("/auth", authRouter);
 

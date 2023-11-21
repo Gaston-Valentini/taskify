@@ -1,9 +1,16 @@
 import { Request, Response } from "express";
 import bcryp from "bcrypt";
+import { validateFields } from "../validations/authValidation";
 import { User } from "../entities/User";
 
 const register = async (req: Request, res: Response) => {
     const { username, email, password } = req.body;
+
+    const validateResponse = validateFields(email, password);
+
+    if (validateResponse.success === false) {
+        return res.status(400).json(validateResponse);
+    }
 
     try {
         const userFound = await User.findOne({ where: { email } });

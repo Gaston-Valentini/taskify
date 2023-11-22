@@ -1,5 +1,5 @@
 import style from "./Register.module.css";
-
+import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 
@@ -63,15 +63,22 @@ export default function Register() {
                         Registrarse
                     </div>
                     <div className={style.containerFormButtonsRedirect}>
-                        ¿Ya tienes una cuenta? <a href="#">Inicia Sesión</a>
+                        ¿Ya tienes una cuenta?{" "}
+                        <Link to="/auth/login">Inicia Sesión</Link>
                     </div>
                     <div className={style.containerFormButtonsLinks}>
-                        <a href="#">
+                        <a
+                            href="https://www.linkedin.com/in/gastonvalentini/"
+                            target="_blank"
+                        >
                             <FaLinkedin
                                 className={style.containerFormButtonsLinksLink}
                             />
                         </a>
-                        <a href="#">
+                        <a
+                            href="https://github.com/Gaston-Valentini"
+                            target="_blank"
+                        >
                             <FaGithub
                                 className={style.containerFormButtonsLinksLink}
                             />

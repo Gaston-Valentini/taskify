@@ -1,5 +1,5 @@
 import style from "./Login.module.css";
-
+import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 
@@ -40,15 +40,22 @@ export default function Login() {
                         Iniciar Sesión
                     </div>
                     <div className={style.containerFormButtonsRedirect}>
-                        ¿Aún no tienes una cuenta? <a href="#">Regístrate</a>
+                        ¿Aún no tienes una cuenta?{" "}
+                        <Link to="/auth/register">Regístrate</Link>
                     </div>
                     <div className={style.containerFormButtonsLinks}>
-                        <a href="#">
+                        <a
+                            href="https://www.linkedin.com/in/gastonvalentini/"
+                            target="_blank"
+                        >
                             <FaLinkedin
                                 className={style.containerFormButtonsLinksLink}
                             />
                         </a>
-                        <a href="#">
+                        <a
+                            href="https://github.com/Gaston-Valentini"
+                            target="_blank"
+                        >
                             <FaGithub
                                 className={style.containerFormButtonsLinksLink}
                             />

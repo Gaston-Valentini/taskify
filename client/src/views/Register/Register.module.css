@@ -38,7 +38,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 100px;
+    gap: 30px;
     background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(50px);
     box-shadow: 0 0 10px black;
@@ -89,6 +89,10 @@
 
 .containerFormInputsCheckbox a {
     color: var(--white);
+    text-decoration: none;
+}
+.containerFormInputsCheckbox a:hover {
+    text-decoration: underline;
 }
 
 .containerFormButtons {
@@ -116,6 +120,10 @@
 
 .containerFormButtonsRedirect a {
     color: var(--white);
+    text-decoration: none;
+}
+.containerFormButtonsRedirect a:hover {
+    text-decoration: underline;
 }
 
 .containerFormButtonsLinks {

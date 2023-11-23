@@ -1,5 +1,5 @@
 import style from "./Register.module.css";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { FaLinkedin, FaGithub } from "react-icons/fa";

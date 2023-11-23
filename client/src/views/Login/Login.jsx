@@ -1,9 +1,32 @@
 import style from "./Login.module.css";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { validateInput } from "../../validations/validateField";
+import { login } from "../../apiCalls/authCalls";
 
 export default function Login() {
+    const [userData, setUserData] = useState({});
+    const [userErrors, setUserErrors] = useState({});
+
+    const onInput = (e) => {
+        setUserData((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }));
+        validateInput(userData, setUserErrors, e.target.name, e.target.value);
+    };
+
+    const onSubmit = () => {
+        if (
+            Object.keys(userData).length === 2 &&
+            Object.keys(userErrors).length === 0
+        ) {
+            login(userData, setUserErrors);
+        }
+    };
+
     return (
         <div className={style.container}>
             <div className={style.containerData}>
@@ -24,7 +47,14 @@ export default function Login() {
                         </div>
                         <input
                             className={style.containerFormInputsSectionInput}
+                            type="email"
+                            maxLength={50}
+                            name="email"
+                            onBlur={onInput}
                         />
+                        <span className={style.containerFormInputsSectionError}>
+                            {userErrors.email}
+                        </span>
                     </div>
                     <div className={style.containerFormInputsSection}>
                         <div className={style.containerFormInputsSectionName}>
@@ -32,11 +62,21 @@ export default function Login() {
                         </div>
                         <input
                             className={style.containerFormInputsSectionInput}
+                            type="password"
+                            maxLength={20}
+                            name="password"
+                            onBlur={onInput}
                         />
+                        <span className={style.containerFormInputsSectionError}>
+                            {userErrors.password}
+                        </span>
                     </div>
                 </div>
                 <div className={style.containerFormButtons}>
-                    <div className={style.containerFormButtonsSubmit}>
+                    <div
+                        className={style.containerFormButtonsSubmit}
+                        onClick={onSubmit}
+                    >
                         Iniciar Sesión
                     </div>
                     <div className={style.containerFormButtonsRedirect}>

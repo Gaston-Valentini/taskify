@@ -62,6 +62,7 @@ class Tasks1700767616912 {
                     {
                         name: "completed",
                         type: "boolean",
+                        default: false,
                     },
                     {
                         name: "createdAt",

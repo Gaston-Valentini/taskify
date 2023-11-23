@@ -31,8 +31,8 @@ export class Task extends BaseEntity {
     @Column()
     category!: string;
 
-    @Column()
-    completed!: string;
+    @Column({ default: false })
+    completed!: boolean;
 
     @CreateDateColumn()
     createdAt!: Date;

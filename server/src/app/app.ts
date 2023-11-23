@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import cors from "cors";
 import authRouter from "../views/authRouter";
+import taskRouter from "../views/taskRouter";
 
 // Settings
 app.set("SERVER_PORT", process.env.SERVER_PORT || 3000);
@@ -20,6 +21,7 @@ app.use(cors());
 
 // Router
 app.use("/auth", authRouter);
+app.use("/task", taskRouter);
 
 // Export
 export default app;

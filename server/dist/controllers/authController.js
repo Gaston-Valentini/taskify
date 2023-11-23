@@ -12,8 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.register = void 0;
+exports.login = exports.register = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const authValidation_1 = require("../validations/authValidation");
 const User_1 = require("../entities/User");
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -54,3 +55,42 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.register = register;
+const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email, password } = req.body;
+    const validateResponse = (0, authValidation_1.validateFields)(email, password);
+    if (validateResponse.success === false) {
+        return res.status(400).json(validateResponse);
+    }
+    try {
+        const userFound = yield User_1.User.findOne({ where: { email } });
+        if (!userFound) {
+            return res.status(400).json({
+                success: false,
+                message: "No existe un usuario registrado con ese correo electrónico",
+            });
+        }
+        const unhashedPassword = bcrypt_1.default.compareSync(password, userFound.password);
+        if (!unhashedPassword) {
+            return res.status(400).json({
+                success: false,
+                message: "Contraseña incorrecta",
+            });
+        }
+        const token = jsonwebtoken_1.default.sign({ id: userFound.id }, "secret", {
+            expiresIn: "24h",
+        });
+        return res.status(200).json({
+            success: true,
+            message: "Inicio de sesión exitoso",
+            token,
+        });
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: "Error durante el registro",
+        });
+    }
+});
+exports.login = login;

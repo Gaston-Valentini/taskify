@@ -3,6 +3,7 @@ import express from "express";
 const app = express();
 import dotenv from "dotenv";
 dotenv.config();
+import cors from "cors";
 import authRouter from "../views/authRouter";
 
 // Settings
@@ -15,6 +16,7 @@ app.set("DB_NAME", process.env.DB_NAME);
 
 // Middlewares
 app.use(express.json());
+app.use(cors());
 
 // Router
 app.use("/auth", authRouter);

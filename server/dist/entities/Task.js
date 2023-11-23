@@ -9,40 +9,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.Task = void 0;
 const typeorm_1 = require("typeorm");
-const Task_1 = require("./Task");
-let User = class User extends typeorm_1.BaseEntity {
+const User_1 = require("./User");
+let Task = class Task extends typeorm_1.BaseEntity {
 };
-exports.User = User;
+exports.Task = Task;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], User.prototype, "id", void 0);
+], Task.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ default: "user" }),
-    __metadata("design:type", String)
-], User.prototype, "username", void 0);
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Task.prototype, "userId", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "email", void 0);
+], Task.prototype, "name", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: "" }),
+    __metadata("design:type", String)
+], Task.prototype, "description", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "password", void 0);
+], Task.prototype, "urgency", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Task.prototype, "category", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Task.prototype, "completed", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], User.prototype, "createdAt", void 0);
+], Task.prototype, "createdAt", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], User.prototype, "updatedAt", void 0);
+], Task.prototype, "updatedAt", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => Task_1.Task, (task) => task.user),
-    __metadata("design:type", Array)
-], User.prototype, "tasks", void 0);
-exports.User = User = __decorate([
-    (0, typeorm_1.Entity)("users")
-], User);
+    (0, typeorm_1.ManyToOne)(() => User_1.User, (user) => user.tasks),
+    (0, typeorm_1.JoinColumn)({ name: "userId" }),
+    __metadata("design:type", User_1.User)
+], Task.prototype, "user", void 0);
+exports.Task = Task = __decorate([
+    (0, typeorm_1.Entity)("tasks")
+], Task);

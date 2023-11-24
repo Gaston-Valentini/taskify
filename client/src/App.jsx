@@ -8,6 +8,7 @@ import {
 
 import Register from "./views/Register/Register";
 import Login from "./views/Login/Login";
+import Tasks from "./views/Tasks/Tasks";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                 <Routes>
                     <Route path="/auth/register" element={<Register />} />
                     <Route path="/auth/login" element={<Login />} />
+                    <Route path="/tasks" element={<Tasks />} />
                     <Route path="*" element={<Navigate to="/auth/login" />} />
                 </Routes>
             </Router>

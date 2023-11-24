@@ -1,0 +1,90 @@
+.container {
+    height: 100vh;
+    background-image: url("../../assets/images/authBg.jpg");
+    background-size: cover;
+    background-position: bottom;
+}
+
+.containerData {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.containerDataTitle {
+    font-size: 30px;
+    color: var(--white);
+    text-shadow: 0 0 10px #000;
+}
+
+.containerDataForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 2px black;
+}
+
+.containerDataFormSection {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.containerDataFormSectionName {
+    color: var(--black);
+}
+
+.containerDataFormSectionInput,
+.containerDataFormSectionTextarea {
+    height: 30px;
+    width: 300px;
+    color: var(--white);
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--white);
+}
+
+.containerDataFormSectionTextarea {
+    height: 100px;
+    resize: none;
+}
+
+.containerDataFormSectionInput:focus,
+.containerDataFormSectionTextarea:focus {
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.containerDataFormSectionInput option {
+    color: var(--black);
+}
+
+.containerDataFormSectionSubmit {
+    padding: 10px 20px;
+    color: var(--white);
+    background-color: var(--rose);
+}
+.containerDataFormSectionSubmit:hover {
+    cursor: pointer;
+    color: var(--rose);
+    background-color: var(--white);
+    outline: 1px solid var(--rose);
+}
+
+@media (max-width: 450px) {
+    .containerData {
+        padding: 0 20px;
+    }
+
+    .containerDataFormSectionInput,
+    .containerDataFormSectionTextarea {
+        width: auto;
+    }
+}

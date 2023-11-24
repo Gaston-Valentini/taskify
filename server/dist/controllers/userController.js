@@ -9,22 +9,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.create = void 0;
-const Task_1 = require("../entities/Task");
-const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getUser = void 0;
+const User_1 = require("../entities/User");
+const getUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const userId = req.token.id;
     try {
-        yield Task_1.Task.create(Object.assign(Object.assign({}, req.body), { userId: req.token.id })).save();
+        const user = yield User_1.User.find({
+            where: { id: userId },
+            select: ["id", "username", "email", "createdAt", "updatedAt"],
+            relations: ["tasks"],
+        });
         return res.status(200).json({
             success: true,
-            message: "Nueva tarea añadida",
+            user,
         });
     }
     catch (error) {
         console.error(error);
         return res.status(500).json({
             success: false,
-            message: "Error durante la creación de tarea",
+            message: "Error durante la obtención de tareas",
         });
     }
 });
-exports.create = create;
+exports.getUser = getUser;

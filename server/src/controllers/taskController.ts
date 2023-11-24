@@ -12,7 +12,7 @@ const create = async (req: Request, res: Response) => {
         console.error(error);
         return res.status(500).json({
             success: false,
-            message: "Error durante el registro",
+            message: "Error durante la creación de tarea",
         });
     }
 };

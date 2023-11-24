@@ -10,6 +10,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const cors_1 = __importDefault(require("cors"));
 const authRouter_1 = __importDefault(require("../views/authRouter"));
+const userRouter_1 = __importDefault(require("../views/userRouter"));
 const taskRouter_1 = __importDefault(require("../views/taskRouter"));
 // Settings
 app.set("SERVER_PORT", process.env.SERVER_PORT || 3000);
@@ -23,6 +24,7 @@ app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 // Router
 app.use("/auth", authRouter_1.default);
+app.use("/user", userRouter_1.default);
 app.use("/task", taskRouter_1.default);
 // Export
 exports.default = app;

@@ -3,7 +3,7 @@ import { Task } from "../entities/Task";
 
 const create = async (req: Request, res: Response) => {
     try {
-        await Task.create({ ...req.body, userId: 1 }).save();
+        await Task.create({ ...req.body, userId: req.token.id }).save();
         return res.status(200).json({
             success: true,
             message: "Nueva tarea añadida",

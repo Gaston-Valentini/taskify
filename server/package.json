@@ -7,8 +7,8 @@
         "start": "node dist/index.js",
         "dev": "nodemon src/index.ts",
         "build": "tsc",
-        "migration-run": "npx typeorm-ts-node-commonjs migration:run -d ./src/database/database",
-        "migration-revert": "npx typeorm-ts-node-commonjs migration:revert -d ./src/database/database"
+        "migration-run": "typeorm-ts-node-commonjs migration:run -d ./src/database/database",
+        "migration-revert": "typeorm-ts-node-commonjs migration:revert -d ./src/database/database"
     },
     "author": "Gastón Valentini",
     "license": "MIT",
@@ -17,7 +17,10 @@
         "cors": "^2.8.5",
         "dotenv": "^16.3.1",
         "express": "^4.18.2",
-        "jsonwebtoken": "^9.0.2"
+        "jsonwebtoken": "^9.0.2",
+        "mysql2": "^3.6.5",
+        "reflect-metadata": "^0.1.13",
+        "typeorm": "^0.3.17"
     },
     "devDependencies": {
         "@types/bcrypt": "^5.0.2",

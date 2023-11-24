@@ -13,7 +13,7 @@ exports.create = void 0;
 const Task_1 = require("../entities/Task");
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield Task_1.Task.create(Object.assign(Object.assign({}, req.body), { userId: 1 })).save();
+        yield Task_1.Task.create(Object.assign(Object.assign({}, req.body), { userId: req.token.id })).save();
         return res.status(200).json({
             success: true,
             message: "Nueva tarea añadida",

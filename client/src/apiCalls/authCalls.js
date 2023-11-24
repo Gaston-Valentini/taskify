@@ -24,7 +24,7 @@ const register = async (body, setUserErrors) => {
 const login = async (body, setUserErrors) => {
     try {
         const res = await axios.post("http://localhost:3000/auth/login", body);
-        console.log(res);
+        localStorage.setItem("token", res.data.token)
     } catch (error) {
         if (
             error.response.data.message ===

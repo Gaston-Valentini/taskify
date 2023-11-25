@@ -4,3 +4,55 @@
     background-size: cover;
     background-position: bottom;
 }
+
+.containerData {
+    padding: 100px 50px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.containerDataTitle {
+    font-size: 30px;
+    color: var(--white);
+    text-shadow: 0 0 10px #000;
+}
+
+.containerDataSearchbar {
+    max-width: 400px;
+    border: none;
+    border: 1px solid var(--white);
+    padding: 10px;
+    color: var(--white);
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 2px black;
+}
+
+.containerDataSearchbar::placeholder {
+    color: var(--white);
+}
+
+.containerDataSearchbar:focus {
+    outline: none;
+}
+
+.containerDataTasks {
+    display: flex;
+    gap: 20px;
+}
+
+.containerDataTasksTask {
+    padding: 10px;
+    text-decoration: none;
+    color: var(--white);
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 2px black;
+    border: 1px solid var(--white);
+}
+
+.containerDataTasksTask:hover {
+    cursor: pointer;
+    background-color: var(--rose);
+}

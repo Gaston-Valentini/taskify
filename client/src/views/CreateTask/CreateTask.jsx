@@ -1,11 +1,20 @@
 import style from "./CreateTask.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import { create } from "../../apiCalls/taskCalls";
+import { isAuth } from "../../validations/autenticated";
 
 export default function CreateTask() {
     const navigate = useNavigate();
+    useEffect(() => {
+        try {
+            isAuth();
+        } catch (error) {
+            navigate("/auth/login");
+        }
+    }, []);
+
     const [task, setTask] = useState({});
 
     const onInput = (e) => {

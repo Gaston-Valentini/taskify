@@ -1,10 +1,20 @@
 import style from "./Tasks.module.css";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/Navbar/Navbar";
+import { isAuth } from "../../validations/autenticated";
 
 export default function Tasks() {
+    const navigate = useNavigate();
+    useEffect(() => {
+        try {
+            isAuth();
+        } catch (error) {
+            navigate("/auth/login");
+        }
+    }, []);
+
     const [tasks, setTasks] = useState([]);
     const [filteredTasks, setFilteredTasks] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");

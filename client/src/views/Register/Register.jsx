@@ -1,6 +1,6 @@
 import style from "./Register.module.css";
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { validateInput, validateTerms } from "../../validations/validateField";
@@ -10,6 +10,7 @@ export default function Register() {
     const [userData, setUserData] = useState({});
     const [userErrors, setUserErrors] = useState({});
     const terms = useRef();
+    const navigate = useNavigate();
 
     const onInput = (e) => {
         setUserData((prevState) => ({
@@ -19,13 +20,18 @@ export default function Register() {
         validateInput(userData, setUserErrors, e.target.name, e.target.value);
     };
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
         validateTerms(setUserErrors, terms);
         if (
             Object.keys(userData).length === 4 &&
             Object.keys(userErrors).length === 0
         ) {
-            register(userData, setUserErrors);
+            try {
+                await register(userData, setUserErrors);
+                navigate("/auth/login");
+            } catch (error) {
+                console.error(error);
+            }
         }
     };
 

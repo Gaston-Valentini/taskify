@@ -1,6 +1,6 @@
 import style from "./Login.module.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { validateInput } from "../../validations/validateField";
@@ -9,6 +9,7 @@ import { login } from "../../apiCalls/authCalls";
 export default function Login() {
     const [userData, setUserData] = useState({});
     const [userErrors, setUserErrors] = useState({});
+    const navigate = useNavigate();
 
     const onInput = (e) => {
         setUserData((prevState) => ({
@@ -18,12 +19,17 @@ export default function Login() {
         validateInput(userData, setUserErrors, e.target.name, e.target.value);
     };
 
-    const onSubmit = () => {
+    const onSubmit = async () => {
         if (
             Object.keys(userData).length === 2 &&
             Object.keys(userErrors).length === 0
         ) {
-            login(userData, setUserErrors);
+            try {
+                await login(userData, setUserErrors);
+                navigate("/tasks");
+            } catch (error) {
+                console.error(error);
+            }
         }
     };
 

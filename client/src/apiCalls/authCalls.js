@@ -12,6 +12,7 @@ const register = async (body, setUserErrors) => {
                 ...prevState,
                 email: error.response.data.message,
             }));
+            throw error.response.data.message;
         } else {
             setUserErrors((prevState) => {
                 const { email, ...rest } = prevState;
@@ -24,7 +25,7 @@ const register = async (body, setUserErrors) => {
 const login = async (body, setUserErrors) => {
     try {
         const res = await axios.post("http://localhost:3000/auth/login", body);
-        localStorage.setItem("token", res.data.token)
+        localStorage.setItem("token", res.data.token);
     } catch (error) {
         if (
             error.response.data.message ===
@@ -34,11 +35,13 @@ const login = async (body, setUserErrors) => {
                 ...prevState,
                 email: error.response.data.message,
             }));
+            throw error.response.data.message;
         } else if (error.response.data.message === "Contraseña incorrecta") {
             setUserErrors((prevState) => ({
                 ...prevState,
                 password: error.response.data.message,
             }));
+            throw error.response.data.message;
         } else {
             setUserErrors((prevState) => {
                 const { email, ...rest } = prevState;

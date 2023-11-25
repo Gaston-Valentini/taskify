@@ -18,7 +18,7 @@ export default function Tasks() {
             })
             .then((res) => {
                 setTasks(res.data.user[0].tasks);
-                setFilteredTasks(res.data.user[0].tasks); // Inicialmente, las tareas filtradas son las mismas que las tareas totales
+                setFilteredTasks(res.data.user[0].tasks);
             })
             .catch((error) => console.error(error));
     }, []);

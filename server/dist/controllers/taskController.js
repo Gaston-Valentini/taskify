@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.create = void 0;
+exports.getTask = exports.create = void 0;
 const Task_1 = require("../entities/Task");
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -28,3 +28,21 @@ const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.create = create;
+const getTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = parseInt(req.params.id);
+    try {
+        const task = yield Task_1.Task.findOne({ where: { id } });
+        return res.status(200).json({
+            success: true,
+            task,
+        });
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: "Error durante la obtención de tarea",
+        });
+    }
+});
+exports.getTask = getTask;

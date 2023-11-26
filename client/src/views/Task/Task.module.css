@@ -1,0 +1,143 @@
+.container {
+    height: 100vh;
+    background-image: url("../../assets/images/authBg.jpg");
+    background-size: cover;
+    background-position: bottom;
+}
+
+.containerData {
+    height: 100%;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.containerDataTitle {
+    text-align: center;
+    font-size: 30px;
+    color: var(--white);
+    text-shadow: 0 0 10px #000;
+}
+
+.containerDataForm {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 2px black;
+}
+
+.containerDataFormInputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.containerDataFormInputsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.containerDataFormInputsSectionInput,
+.containerDataFormInputsSectionTextarea {
+    height: 30px;
+    width: 300px;
+    color: var(--white);
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--white);
+}
+
+.containerDataFormInputsSectionTextarea {
+    height: 100px;
+    resize: none;
+}
+
+.containerDataFormInputsSectionInput:focus,
+.containerDataFormInputsSectionTextarea:focus {
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.containerDataFormInputsSectionInput option {
+    color: var(--black);
+}
+
+.containerDataFormInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.containerDataFormInfo div {
+    display: flex;
+    gap: 5px;
+}
+
+.pendient {
+    font-size: 20px;
+    color: rgb(255, 0, 0);
+}
+
+.completed {
+    padding-top: 2px;
+    color: rgb(94, 255, 94);
+}
+
+.containerDataFormButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.containerDataFormButtons div {
+    width: max-content;
+    padding: 5px;
+}
+
+.containerDataFormButtonsCompleted {
+    border: 1px solid rgb(94, 255, 94);
+}
+.containerDataFormButtonsCompleted:hover {
+    cursor: pointer;
+    background-color: rgb(94, 255, 94);
+}
+
+.containerDataFormButtonsSave {
+    border: 1px solid rgb(0, 234, 255);
+}
+.containerDataFormButtonsSave:hover {
+    cursor: pointer;
+    color: var(--black);
+    background-color: rgb(0, 234, 255);
+}
+
+.containerDataFormButtonsDelete {
+    border: 1px solid rgb(255, 0, 0);
+}
+.containerDataFormButtonsDelete:hover {
+    cursor: pointer;
+    background-color: rgb(255, 0, 0);
+}
+
+@media (max-width: 450px) {
+    .containerData {
+        padding: 0 20px;
+    }
+
+    .containerDataFormInputsSection {
+        width: 100%;
+    }
+
+    .containerDataFormInputsSectionInput,
+    .containerDataFormInputsSectionTextarea {
+        width: 100%;
+    }
+}

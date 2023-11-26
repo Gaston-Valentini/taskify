@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTask = exports.create = void 0;
+exports.remove = exports.update = exports.getTask = exports.create = void 0;
 const Task_1 = require("../entities/Task");
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -46,3 +46,39 @@ const getTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getTask = getTask;
+const update = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = parseInt(req.params.id);
+    try {
+        yield Task_1.Task.update(id, req.body);
+        return res.status(200).json({
+            success: true,
+            message: "Tarea actualizada",
+        });
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: "Error durante la edición de tarea",
+        });
+    }
+});
+exports.update = update;
+const remove = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = parseInt(req.params.id);
+    try {
+        yield Task_1.Task.delete(id);
+        return res.status(200).json({
+            success: true,
+            message: "Tarea eliminada",
+        });
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: "Error durante la eliminación de tarea",
+        });
+    }
+});
+exports.remove = remove;

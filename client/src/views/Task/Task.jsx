@@ -1,13 +1,16 @@
 import style from "./Task.module.css";
 import Navbar from "../../components/Navbar/Navbar";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { FaRegCheckCircle } from "react-icons/fa";
-import { RiCloseCircleLine } from "react-icons/ri";
-import { getTask } from "../../apiCalls/taskCalls";
+import { useParams, useNavigate } from "react-router-dom";
+import {
+    IoCloseCircleOutline,
+    IoCheckmarkCircleOutline,
+} from "react-icons/io5";
+import { getTask, update, remove } from "../../apiCalls/taskCalls";
 import { convertDate } from "../../functions/convertDate";
 
 export default function Task() {
+    const navigate = useNavigate();
     const params = useParams();
     const [data, setData] = useState({
         name: "",
@@ -41,6 +44,23 @@ export default function Task() {
             ...prevState,
             [e.target.name]: e.target.value,
         }));
+    };
+
+    const onComplete = () => {
+        setData((prevState) => ({
+            ...prevState,
+            completed: !prevState.completed,
+        }));
+    };
+
+    const onUpdate = () => {
+        update(params.id, data);
+        navigate("/tasks");
+    };
+
+    const onRemove = () => {
+        remove(params.id);
+        navigate("/tasks");
     };
 
     return (
@@ -136,11 +156,11 @@ export default function Task() {
                             <div>
                                 Completed:{" "}
                                 {data.completed ? (
-                                    <FaRegCheckCircle
+                                    <IoCheckmarkCircleOutline
                                         className={style.completed}
                                     />
                                 ) : (
-                                    <RiCloseCircleLine
+                                    <IoCloseCircleOutline
                                         className={style.pendient}
                                     />
                                 )}
@@ -157,15 +177,22 @@ export default function Task() {
                     <div className={style.containerDataFormButtons}>
                         <div
                             className={style.containerDataFormButtonsCompleted}
+                            onClick={onComplete}
                         >
                             {data.completed
                                 ? "Marcar como pendiente"
                                 : "Marcar como completa"}
                         </div>
-                        <div className={style.containerDataFormButtonsSave}>
+                        <div
+                            className={style.containerDataFormButtonsSave}
+                            onClick={onUpdate}
+                        >
                             Guardar
                         </div>
-                        <div className={style.containerDataFormButtonsDelete}>
+                        <div
+                            className={style.containerDataFormButtonsDelete}
+                            onClick={onRemove}
+                        >
                             Eliminar
                         </div>
                     </div>

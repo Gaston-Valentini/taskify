@@ -39,20 +39,52 @@
 
 .containerDataTasks {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
-.containerDataTasksTask {
+.containerDataTasksIncompleted,
+.containerDataTasksCompleted {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.containerDataTasksIncompletedTitle {
+    font-weight: 900;
+    color: rgb(255, 0, 0);
+}
+
+.containerDataTasksCompletedTitle {
+    font-weight: 900;
+    color: rgb(94, 255, 94);
+}
+
+.containerDataTasksIncompletedTasks,
+.containerDataTasksCompletedTasks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.containerDataTasksIncompletedTasksTask,
+.containerDataTasksCompletedTasksTask {
     padding: 10px;
-    text-decoration: none;
+    border: 1px solid var(--white);
     color: var(--white);
     background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(5px);
     box-shadow: 0 0 2px black;
-    border: 1px solid var(--white);
+    text-decoration: none;
 }
 
-.containerDataTasksTask:hover {
-    cursor: pointer;
+.containerDataTasksIncompletedTasksTask:hover,
+.containerDataTasksCompletedTasksTask:hover {
     background-color: var(--rose);
+}
+
+@media (max-width: 600px) {
+    .containerDataTasks {
+        flex-direction: column;
+    }
 }

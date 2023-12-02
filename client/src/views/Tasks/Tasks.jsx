@@ -51,15 +51,51 @@ export default function Tasks() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 <div className={style.containerDataTasks}>
-                    {filteredTasks.map((e) => (
-                        <Link
-                            to={`${e.id}`}
-                            key={e.id}
-                            className={style.containerDataTasksTask}
+                    <div className={style.containerDataTasksIncompleted}>
+                        <div
+                            className={style.containerDataTasksIncompletedTitle}
                         >
-                            {e.name}
-                        </Link>
-                    ))}
+                            Tareas pendientes
+                        </div>
+                        <div
+                            className={style.containerDataTasksIncompletedTasks}
+                        >
+                            {filteredTasks
+                                .filter((task) => !task.completed)
+                                .map((e) => (
+                                    <Link
+                                        to={`${e.id}`}
+                                        key={e.id}
+                                        className={
+                                            style.containerDataTasksIncompletedTasksTask
+                                        }
+                                    >
+                                        {e.name}
+                                    </Link>
+                                ))}
+                        </div>
+                    </div>
+                    <hr></hr>
+                    <div className={style.containerDataTasksCompleted}>
+                        <div className={style.containerDataTasksCompletedTitle}>
+                            Tareas completadas
+                        </div>
+                        <div className={style.containerDataTasksCompletedTasks}>
+                            {filteredTasks
+                                .filter((task) => task.completed)
+                                .map((e) => (
+                                    <Link
+                                        to={`${e.id}`}
+                                        key={e.id}
+                                        className={
+                                            style.containerDataTasksCompletedTasksTask
+                                        }
+                                    >
+                                        {e.name}
+                                    </Link>
+                                ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

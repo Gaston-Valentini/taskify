@@ -22,8 +22,8 @@ export default function Task() {
         updatedAt: "",
     });
 
-    const [urgencys, setUrgencys] = useState(["Baja", "Media", "Alta"]);
-    const [categorys, setCategorys] = useState([
+    const urgencys = ["Baja", "Media", "Alta"];
+    const categorys = [
         "Trabajo",
         "Personal",
         "Estudio",
@@ -33,7 +33,7 @@ export default function Task() {
         "Proyectos",
         "Compras",
         "Eventos",
-    ]);
+    ];
 
     useEffect(() => {
         getTask(params.id, setData);
@@ -170,7 +170,7 @@ export default function Task() {
                             </div>
                             <div>
                                 Última actualización:{" "}
-                                {convertDate(data.createdAt)}
+                                {convertDate(data.updatedAt)}
                             </div>
                         </div>
                     </div>
